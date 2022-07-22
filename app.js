@@ -5,8 +5,8 @@ let dotenv=require('dotenv');
 dotenv.config();
 let mongo=require('mongodb');
 let MongoClient=mongo.MongoClient;
-let mongoUrl="mongodb://localhost:27017";
-//let mongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority";
+//let mongoUrl="mongodb://localhost:27017";
+let mongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority";
 let db;
 // app.get('/loc',(res,res))
 app.get('/',(req,res)=>{
