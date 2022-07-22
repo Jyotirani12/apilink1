@@ -9,7 +9,7 @@ dotenv.config();
 let mongo=require('mongodb');
 let MongoClient=mongo.MongoClient;
 //let mongoUrl="mongodb://localhost:27017";
-let mongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
 let db;
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -79,7 +79,7 @@ app.get('/products',(req,res)=>{
 // })
 // app.get('filter'/)
 
-MongoClient.connect(mongoUrl,(err,client) =>{
+MongoClient.connect(MongoUrl,(err,client) =>{
     if(err) console.log(`Error While Connecting`);
     db = client.db('amazon');
        app.listen(port,() => {
