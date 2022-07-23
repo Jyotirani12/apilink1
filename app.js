@@ -1,11 +1,14 @@
 let express=require('express');
 let app=express();
-let port=process.env.port;
+
+
 let dotenv=require('dotenv');
+dotenv.config();
+let port=process.env.port;
 let morgan=require('morgan');
 let bodyParser=require('body-parser');
 let cors=require('cors');
-dotenv.config();
+
 let mongo=require('mongodb');
 let MongoClient=mongo.MongoClient;
 //let MongoUrl="mongodb://localhost:27017";
