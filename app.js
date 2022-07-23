@@ -1,6 +1,6 @@
 let express=require('express');
 let app=express();
-let port=process.env.port||9870;
+let port=process.env.port;
 let dotenv=require('dotenv');
 let morgan=require('morgan');
 let bodyParser=require('body-parser');
