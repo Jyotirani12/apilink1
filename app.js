@@ -8,8 +8,8 @@ let cors=require('cors');
 dotenv.config();
 let mongo=require('mongodb');
 let MongoClient=mongo.MongoClient;
-let MongoUrl="mongodb://localhost:27017";
-//let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+//let MongoUrl="mongodb://localhost:27017";
+let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
 let db;
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({extended:true}));
