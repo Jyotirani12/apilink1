@@ -4,7 +4,7 @@ let app=express();
 
 let dotenv=require('dotenv');
 dotenv.config();
-let port=process.env.port;
+let port=process.env.PORT;
 let morgan=require('morgan');
 let bodyParser=require('body-parser');
 let cors=require('cors');
