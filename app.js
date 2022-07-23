@@ -1,15 +1,31 @@
+// let express=require('express');
+// let app=express();
+// let port=process.env.port||9870;
+// let dotenv=require('dotenv');
+// let morgan=require('morgan');
+// let bodyParser=require('body-parser');
+// let cors=require('cors');
+// dotenv.config();
+// let mongo=require('mongodb');
+// let MongoClient=mongo.MongoClient;
+// //let MongoUrl="mongodb://localhost:27017";
+// let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+
+
+
 let express=require('express');
 let app=express();
 
-
 let dotenv=require('dotenv');
+
 dotenv.config();
-let port=process.env.PORT;
+let port=process.env.PORT||9870;
 let morgan=require('morgan');
 let bodyParser=require('body-parser');
 let cors=require('cors');
 
 let mongo=require('mongodb');
+
 let MongoClient=mongo.MongoClient;
 //let MongoUrl="mongodb://localhost:27017";
 let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
