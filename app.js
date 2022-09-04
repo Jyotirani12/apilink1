@@ -28,7 +28,7 @@ let mongo=require('mongodb');
 
 let MongoClient=mongo.MongoClient;
 //let MongoUrl="mongodb://localhost:27017";
-let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+ let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
 let db;
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -59,13 +59,49 @@ app.get('/product',(req,res)=>{
     })
 })
 
-app.get('/details/:id',(req,res)=>{
-    let id = Number(req.params.id);
-    db.collection('product').find({product_id:Number(id)},{product_name:1,_id:0}).toArray((err,result)=>{
+// app.get('/details/:id',(req,res)=>{
+//     let id = Number(req.params.id);
+//     db.collection('product').find({product_id:Number(id)},{product_name:1,_id:0}).toArray((err,result)=>{
+//         if(err) throw err;
+//         res.send(result);
+//     })
+// })
+app.get('/deal',(req,res) => {
+    db.collection('dealData').find().toArray((err,result) => {
         if(err) throw err;
         res.send(result);
     })
 })
+app.get('/details/:categoryId',(req,res)=>{
+    let query={};
+    let categoryId=Number(req.params.categoryId);
+    let productId = Number(req.query.productId);
+    if(productId)
+    {
+        query={
+            "category_id":categoryId,
+            "product_id":productId
+        }
+    } else if(categoryId)
+    {
+        query={
+            "category_id":categoryId
+          
+        }
+    } else{
+        query={}
+
+    }
+
+    
+
+
+    db.collection('product').find(query).toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
 //To show Product Acc to category
 app.get('/product/:id',(req,res)=>{
     let id=req.params.id;
