@@ -9,6 +9,9 @@ https://apidrop1.herokuapp.com/product
 #deal of the day
 https://apidrop1.herokuapp.com/deal
 
+https://apilink1.herokuapp.com/deal
+
+
 #List of Product according to category
 https://apidrop1.herokuapp.com/details/2
 
@@ -18,6 +21,7 @@ https://apidrop1.herokuapp.com/product/1
 
 #detail of a product according to category (having categoryid as param nd productid as query)
 http://localhost:7800/details/2?productId=17
+
 
 
 

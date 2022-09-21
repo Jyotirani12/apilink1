@@ -93,9 +93,6 @@ app.get('/details/:categoryId',(req,res)=>{
 
     }
 
-    
-
-
     db.collection('product').find(query).toArray((err,result)=>{
         if(err) throw err;
         res.send(result);
@@ -106,6 +103,33 @@ app.get('/details/:categoryId',(req,res)=>{
 app.get('/product/:id',(req,res)=>{
     let id=req.params.id;
     db.collection('product').find({category_id:Number(id)},{product_name:0}).toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+//List of product according to subcategory
+app.get('/detailSubcategory/:categoryId',(req,res)=>{
+    let query={};
+    let categoryId=Number(req.params.categoryId);
+    let subcategoryId = Number(req.query.subcategoryId);
+    if(productId)
+    {
+        query={
+            "category_id":categoryId,
+            "subcategory_id":subcategoryId
+        }
+    } else if(categoryId)
+    {
+        query={
+            "category_id":categoryId
+          
+        }
+    } else{
+        query={}
+
+    }
+
+    db.collection('product').find(query).toArray((err,result)=>{
         if(err) throw err;
         res.send(result);
     })
