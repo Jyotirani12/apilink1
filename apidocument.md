@@ -22,6 +22,10 @@ https://apidrop1.herokuapp.com/product/1
 #detail of a product according to category (having categoryid as param nd productid as query)
 http://localhost:7800/details/2?productId=17
 
+//List of product according to subcategory
+
+http://localhost:7800/detailSubcategory/2?subcategoryId=3
+
 
 
 

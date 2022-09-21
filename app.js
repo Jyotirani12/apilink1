@@ -112,7 +112,7 @@ app.get('/detailSubcategory/:categoryId',(req,res)=>{
     let query={};
     let categoryId=Number(req.params.categoryId);
     let subcategoryId = Number(req.query.subcategoryId);
-    if(productId)
+    if(subcategoryId)
     {
         query={
             "category_id":categoryId,
