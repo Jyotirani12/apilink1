@@ -1,15 +1,4 @@
-// let express=require('express');
-// let app=express();
-// let port=process.env.port||9870;
-// let dotenv=require('dotenv');
-// let morgan=require('morgan');
-// let bodyParser=require('body-parser');
-// let cors=require('cors');
-// dotenv.config();
-// let mongo=require('mongodb');
-// let MongoClient=mongo.MongoClient;
-// //let MongoUrl="mongodb://localhost:27017";
-// let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+
 
 
 
@@ -27,8 +16,8 @@ let cors=require('cors');
 let mongo=require('mongodb');
 
 let MongoClient=mongo.MongoClient;
-//let MongoUrl="mongodb://localhost:27017";
- let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+let MongoUrl="mongodb://localhost:27017";
+ //let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
 let db;
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -148,15 +137,58 @@ app.get('/products',(req,res)=>{
         res.send(result);
     })
 })
-// app.get('/product',(req,res)=>{
-//    let id=req.query.category_id;
-// //let {category_id}=req.query;
-//     db.collection('product').find({category_id:Number(id)}).toArray((err,result)=>{
-//         if(err) throw err;
-//         res.send(result);
-//     })
-// })
-// app.get('filter'/)
+//filter according to cost nd brand
+
+   
+    // db.collection('product').find({category_id:categoryId}).toArray((err,result) => {
+    //             if(err) throw err;
+    //             res.send(result)
+    //         })
+        
+
+
+
+app.get(`/filter/:categoryId`,(req,res) => {
+    let query = {}
+    // let sort = {cost:1}
+    let categoryId = Number(req.params.categoryId);
+    let BrandId = Number(req.query.BrandId);
+    let lcost = Number(req.query.lcost);
+    let hcost = Number(req.query.hcost);
+    // if(req.query.sort){
+    //     sort={cost:req.query.sort}
+    // }
+    if(BrandId && lcost && hcost){
+        query = {
+            category_id:categoryId,
+            "Brand.brand_id":BrandId,
+            $and:[{Price:{$gt:lcost,$lt:hcost}}]
+        }
+    }
+    else if(BrandId){
+        query = {
+            category_id:categoryId,
+            "Brand.brand_id":BrandId
+        }
+    }else if(lcost && hcost){
+        query = {
+            category_id:categoryId,
+            $and:[{Price:{$gt:lcost,$lt:hcost}}]
+        }
+    }
+    else{
+        query = {
+            category_id:categoryId
+        }
+    }
+    db.collection('product').find(query).toArray((err,result) => {
+        if(err) throw err;
+        res.send(result)
+    })
+
+})
+
+
 
 MongoClient.connect(MongoUrl,(err,client) =>{
     if(err) console.log(`Error While Connecting`);
