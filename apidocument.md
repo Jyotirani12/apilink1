@@ -27,6 +27,15 @@ https://apidrop1.herokuapp.com/detailSubcategory/2?subcategoryId=3
 
 http://localhost:7800/detailSubcategory/2?subcategoryId=3
 
+#filter according to category then filter on subcategory and brand nd cost
+
+https://apilink1.herokuapp.com/filter/2?BrandId=6&lcost=18000&hcost=20000
+or
+http://localhost:7800/filter/2?subcategoryId=3&lcost=37000&hcost=40000&BrandId=4
+
+
+
+
 
 
 

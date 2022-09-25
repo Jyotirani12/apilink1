@@ -152,25 +152,53 @@ app.get(`/filter/:categoryId`,(req,res) => {
     let query = {}
     // let sort = {cost:1}
     let categoryId = Number(req.params.categoryId);
+    let subcategoryId=Number(req.query.subcategoryId);
     let BrandId = Number(req.query.BrandId);
     let lcost = Number(req.query.lcost);
     let hcost = Number(req.query.hcost);
     // if(req.query.sort){
     //     sort={cost:req.query.sort}
     // }
-    if(BrandId && lcost && hcost){
+    if(subcategoryId && BrandId && lcost && hcost){
         query = {
             category_id:categoryId,
+            subcategory_id:subcategoryId,
             "Brand.brand_id":BrandId,
             $and:[{Price:{$gt:lcost,$lt:hcost}}]
+        }
+    }
+    else if(subcategoryId && BrandId){
+        query = {
+            category_id:categoryId,
+            subcategory_id:subcategoryId,
+            "Brand.brand_id":BrandId
+        }
+    }
+    else if(subcategoryId && lcost && hcost ){
+        query = {
+            category_id:categoryId,
+            subcategory_id:subcategoryId,
+            $and:[{Price:{$gt:lcost,$lt:hcost}}]
+       
         }
     }
     else if(BrandId){
         query = {
             category_id:categoryId,
             "Brand.brand_id":BrandId
+          
         }
-    }else if(lcost && hcost){
+    }
+    else if(subcategoryId){
+        query = {
+            category_id:categoryId,
+            subcategory_id:subcategoryId
+           
+          
+        }
+    }
+    
+    else if(lcost && hcost){
         query = {
             category_id:categoryId,
             $and:[{Price:{$gt:lcost,$lt:hcost}}]
