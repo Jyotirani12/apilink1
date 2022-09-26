@@ -215,6 +215,13 @@ app.get(`/filter/:categoryId`,(req,res) => {
     })
 
 })
+//Post API to place the order 
+app.post('/placeOrder', (req, res) => {
+    db.collection('orders').insert(req.body, (err, result) => {
+        if (err) throw err;
+        res.send('order placed')
+    })
+})
 
 
 
