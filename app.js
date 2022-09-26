@@ -222,6 +222,17 @@ app.post('/placeOrder', (req, res) => {
         res.send('order placed')
     })
 })
+//To see menu Item
+app.post('/menuItem',(req,res) => {
+    if(Array.isArray(req.body.id)){
+        db.collection('product').find({product_id:{$in:req.body.id}}).toArray((err,result) => {
+            if(err) throw err;
+            res.send(result)
+        })
+    }else{
+        res.send('Invalid Input')
+    }
+})
 
 
 

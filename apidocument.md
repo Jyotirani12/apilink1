@@ -37,6 +37,10 @@ http://localhost:7800/filter/2?subcategoryId=3&lcost=37000&hcost=40000&BrandId=4
 https://apilink1.herokuapp.com/filter/2?subcategoryId=3&lcost=37000&hcost=40000&BrandId=4
 
 
+#to place Order
+localost:7800/placeOrder
+
+
 
 
 
