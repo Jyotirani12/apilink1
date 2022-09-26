@@ -41,6 +41,13 @@ https://apilink1.herokuapp.com/filter/2?subcategoryId=3&lcost=37000&hcost=40000&
 localost:7800/placeOrder
 
 
+#to see MenuItem i.e. placed items in orders collection
+localhost:7800/order
+
+
+
+
+
 
 
 

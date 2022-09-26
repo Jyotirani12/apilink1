@@ -16,8 +16,8 @@ let cors=require('cors');
 let mongo=require('mongodb');
 
 let MongoClient=mongo.MongoClient;
-//let MongoUrl="mongodb://localhost:27017";
- let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
+let MongoUrl="mongodb://localhost:27017";
+// let MongoUrl="mongodb+srv://test:test123@cluster0.cxbxf.mongodb.net/?retryWrites=true&w=majority"
 let db;
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -55,12 +55,7 @@ app.get('/product',(req,res)=>{
 //         res.send(result);
 //     })
 // })
-app.get('/deal',(req,res) => {
-    db.collection('dealData').find().toArray((err,result) => {
-        if(err) throw err;
-        res.send(result);
-    })
-})
+
 app.get('/details/:categoryId',(req,res)=>{
     let query={};
     let categoryId=Number(req.params.categoryId);
@@ -233,6 +228,14 @@ app.post('/menuItem',(req,res) => {
         res.send('Invalid Input')
     }
 })
+//to see order collection
+app.get('/order',(req,res) => {
+    db.collection('orders').find().toArray((err,result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
 
 
 
