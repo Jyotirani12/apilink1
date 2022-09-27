@@ -1,10 +1,10 @@
 #List of All Categories
 
-https://apidrop1.herokuapp.com/category
+https://apilink1.herokuapp.com/category
 
 #List of All Products
 
-https://apidrop1.herokuapp.com/product
+https://apilink1.herokuapp.com/product
 
 #deal of the day
 https://apidrop1.herokuapp.com/deal

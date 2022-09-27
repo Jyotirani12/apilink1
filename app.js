@@ -34,12 +34,15 @@ app.get('/category',(req,res) => {
         res.send(result);
     })
 })
+//subcategory according to category
 app.get('/subcategory',(req,res) => {
-    db.collection('subcategory').find().toArray((err,result) => {
+    let categoryId=Number(req.query.categoryId);
+    db.collection('subcategory').find({category_id:categoryId}).toArray((err,result) => {
         if(err) throw err;
         res.send(result);
     })
 })
+
 //to show all Product
 app.get('/product',(req,res)=>{
     db.collection('product').find({},{'product_name':1,'_id':0}).toArray((err,result)=>{
