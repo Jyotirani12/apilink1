@@ -36,8 +36,19 @@ app.get('/category',(req,res) => {
 })
 //subcategory according to category
 app.get('/subcategory',(req,res) => {
+    let query={}
     let categoryId=Number(req.query.categoryId);
-    db.collection('subcategory').find({category_id:categoryId}).toArray((err,result) => {
+    if(categoryId){
+        query={
+            category_id:categoryId
+        }
+
+        }
+        else{
+            query={}
+        }
+    
+    db.collection('subcategory').find({query}).toArray((err,result) => {
         if(err) throw err;
         res.send(result);
     })
