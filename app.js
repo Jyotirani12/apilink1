@@ -83,6 +83,7 @@ app.get('/details/:categoryId',(req,res)=>{
     })
 })
 
+
 //To show Product Acc to category
 app.get('/product/:id',(req,res)=>{
     let id=req.params.id;
@@ -229,12 +230,53 @@ app.post('/menuItem',(req,res) => {
     }
 })
 //to see order collection
-app.get('/order',(req,res) => {
-    db.collection('orders').find().toArray((err,result) => {
-        if(err) throw err;
+// app.get('/order',(req,res) => {
+//     db.collection('orders').find().toArray((err,result) => {
+//         if(err) throw err;
+//         res.send(result);
+//     })
+// })
+app.get("/order", (req, res) => {
+    let email = req.query.email;
+    let query = {};
+    if (email) {
+      query = { email };
+    }
+    db.collection("orders")
+      .find(query)
+      .toArray((err, result) => {
+        if (err) throw err;
         res.send(result);
-    })
-})
+      });
+  });
+
+
+
+  app.patch("/order/:id", (req, res) => {
+    let oid = Number(req.params.id);
+    db.collection("orders").updateOne(
+      { id: oid },
+      {
+        $set: {
+          status: req.body.status,
+          bank_name: req.body.bank_name,
+          date: req.body.date,
+        },
+      },
+      (err, result) => {
+        if (err) throw err;
+        res.send("Order Updated");
+      }
+    );
+  });
+
+  app.delete("/deleteOrder/:id", (req, res) => {
+    let _id = mongo.ObjectId(req.params.id);
+    db.collection("orders").remove({ _id }, (err, result) => {
+      if (err) throw err;
+      res.send("Order Deleted");
+    });
+  });
 
 
 
