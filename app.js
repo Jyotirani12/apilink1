@@ -48,7 +48,7 @@ app.get('/subcategory',(req,res) => {
             query={}
         }
     
-    db.collection('subcategory').find({query}).toArray((err,result) => {
+    db.collection('subcategory').find(query).toArray((err,result) => {
         if(err) throw err;
         res.send(result);
     })
